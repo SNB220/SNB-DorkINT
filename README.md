@@ -16,9 +16,13 @@ Master the art of advanced Google searching with pre-built queries and templates
 
 ## 🚀 Quick Start
 
+### Live Demo
+👉 **[Try SNB-DorkINT Live](https://snb220.github.io/SNB-DorkINT/)** 
+
+### Local Installation
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/SNB-DorkINT.git
+   git clone https://github.com/SNB220/SNB-DorkINT.git
    ```
 
 2. **Open the tool**
