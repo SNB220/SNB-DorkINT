@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SNB-DorkINT</title>
+  <link rel="stylesheet" href="SNB-DorkINT.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>SNB-DorkINT</h1>
+      <p>Master the art of advanced Google searching with pre-built queries and templates</p>
+    </div>
+
+    <!-- Control Buttons -->
+    <div class="controls">
+      <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+      <button class="favorites-btn" onclick="openFavoritesModal()">⭐ Favorites</button>
+      <button class="history-btn" onclick="openHistoryModal()">📜 History</button>
+      <button class="refresh-btn" onclick="refreshForm()">🔄 Refresh</button>
+      <button class="clear-btn" onclick="clearAllData()">🗑️ Clear All</button>
+      <button class="btn-save-dork-top" onclick="openSaveDorkModal()">💾 Save Dork</button>
+      <button class="btn-export-dorks" onclick="exportCustomDorks()">📥 Export</button>
+      <button class="btn-import-dorks" onclick="document.getElementById('importFile').click()">📤 Import</button>
+      <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importCustomDorks(event)">
+    </div>
+
+    <!-- Main Search Box -->
+    <div class="search-container">
+      <div class="help-text">
+        <div class="tooltip" style="position: relative; display: inline-block;">
+          <span style="font-size: 1.2em; cursor: help;">ℹ️</span>
+          <div class="tooltiptext" style="width: 300px; position: absolute; bottom: 125%; left: -100px; margin-left: 0;">
+            <strong>Search Engine Support:</strong><br>
+            ✅ <strong>Google:</strong> Best for advanced dorks<br>
+            ✅ <strong>Bing:</strong> Most Google dorks work<br>
+            ⚠️ <strong>DuckDuckGo:</strong> Limited support, privacy-focused<br>
+            ✅ <strong>Brave:</strong> Privacy-focused, good support<br>
+            ⚠️ <strong>Yahoo/Yandex:</strong> Varying operator support
+          </div>
+        </div>
+        <span>Google Dorks are advanced search techniques. Combine different operators to find specific information on the web.</span>
+      </div>
+
+      <form id="dorkForm" onsubmit="searchDork(event)">
+        <div class="search-box">
+          <select id="searchEngine" onchange="updateSearchEngine()">
+            <option value="google">🔵 Google</option>
+            <option value="bing">🔷 Bing</option>
+            <option value="duckduckgo">🦆 DuckDuckGo</option>
+            <option value="brave">🦁 Brave</option>
+            <option value="yahoo">🟣 Yahoo</option>
+            <option value="yandex">🔴 Yandex</option>
+          </select>
+
+          <select id="dorkType" onchange="updateDorkInfo()">
+            <option value="" disabled selected>🔍 Select Dork Type</option>
+
+            <optgroup label="🔍 Basic Search">
+              <option value="site:">site: (Search on specific site)</option>
+              <option value="inurl:">inurl: (Search in URLs)</option>
+              <option value="intitle:">intitle: (Search in page titles)</option>
+              <option value="intext:">intext: (Search in page text)</option>
+              <option value="allintitle:">allintitle: (ALL words in title)</option>
+              <option value="allintext:">allintext: (ALL words in text)</option>
+              <option value="allinurl:">allinurl: (ALL words in URL)</option>
+              <option value="related:">related: (Find similar sites)</option>
+            </optgroup>
+
+            <optgroup label="📁 File & Directory">
+              <option value="filetype:pdf">filetype:pdf (PDF files)</option>
+              <option value="filetype:doc">filetype:doc (Word documents)</option>
+              <option value="filetype:xls">filetype:xls (Excel spreadsheets)</option>
+              <option value="filetype:ppt">filetype:ppt (PowerPoint files)</option>
+              <option value="filetype:txt">filetype:txt (Text files)</option>
+              <option value="filetype:sql">filetype:sql (SQL database files)</option>
+              <option value="filetype:xml">filetype:xml (XML files)</option>
+              <option value="filetype:conf">filetype:conf (Configuration files)</option>
+              <option value="filetype:log">filetype:log (Log files)</option>
+              <option value="index of">index of (Directory listings)</option>
+            </optgroup>
+
+            <optgroup label="🔐 Login & Admin Pages">
+              <option value='inurl:"admin"'>inurl:"admin" (Admin panels)</option>
+              <option value='inurl:"login"'>inurl:"login" (Login pages)</option>
+              <option value='inurl:"signin"'>inurl:"signin" (Sign-in pages)</option>
+              <option value='intitle:"login"'>intitle:"login" (Login in title)</option>
+              <option value='intitle:"admin panel"'>intitle:"admin panel" (Admin panel)</option>
+              <option value='inurl:"user/login"'>inurl:"user/login" (User login)</option>
+              <option value='inurl:"webadmin"'>inurl:"webadmin" (Web admin)</option>
+            </optgroup>
+
+            <optgroup label="🔑 Sensitive Data & Credentials">
+              <option value='filetype:env "DB_PASSWORD"'>filetype:env (Environment files)</option>
+              <option value='filetype:config "password"'>filetype:config (Config with password)</option>
+              <option value='intitle:"index of" "passwords"'>Passwords exposure</option>
+              <option value='filetype:sql "password"'>SQL with passwords</option>
+              <option value='filetype:bak "password"'>Backup files with password</option>
+              <option value='"api_key"'>API keys exposure</option>
+              <option value='"private key"'>Private keys exposure</option>
+            </optgroup>
+
+            <optgroup label="🖥️ Miscellaneous">
+              <option value="cache:">cache: (Cached pages)</option>
+              <option value="info:">info: (Site information)</option>
+              <option value="define:">define: (Word definition)</option>
+              <option value="weather ">weather (Weather info)</option>
+              <option value="stocks ">stocks (Stock info)</option>
+            </optgroup>
+
+            <optgroup label="🚫 Exclusion Operators">
+              <option value="-">- (Exclude term)</option>
+              <option value='site: -inurl:'>(Site excluding URL)</option>
+            </optgroup>
+          </select>
+
+          <input type="text" id="keyword" placeholder='Enter search keyword...' required>
+
+          <div class="search-actions">
+            <button type="submit" class="btn-search">🔭 Search</button>
+            <button type="button" class="btn-copy" onclick="copyQuery()">📋 Copy</button>
+            <button type="button" class="btn-fav" onclick="addToFavorites()">⭐ Add</button>
+          </div>
+        </div>
+
+        <!-- Dork Information Box -->
+        <div class="dork-info">
+          <div class="info-box">
+            <strong>Current Query:</strong>
+            <p id="currentQuery" style="margin-top: 5px; word-break: break-all;">No query yet</p>
+          </div>
+          <div class="info-box">
+            <strong>Description:</strong>
+            <p id="dorkDescription" style="margin-top: 5px;">Select a dork type to see information</p>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Custom Dorks Section -->
+    <div class="custom-dorks-section" id="customDorksSection" style="display: none;">
+      <h2>🔧 My Custom Dorks</h2>
+      <p style="margin-bottom: 20px; opacity: 0.8; font-size: 1.1em;">Click any custom dork to use it:</p>
+      <div class="custom-dorks-container" id="customDorksContainer"></div>
+    </div>
+
+    <!-- Save Custom Dork Modal -->
+    <div id="saveDorkModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeSaveDorkModal()">&times;</span>
+        <h2>➕ Save Custom Dork</h2>
+        <p style="margin-bottom: 15px; opacity: 0.9;">Save a new dork operator for quick access:</p>
+        
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 8px; font-weight: bold;">Dork Operator:</label>
+          <input type="text" id="customDorkOperator" placeholder="e.g., cache:, inurl:, site:" style="width: 100%; padding: 10px; border: 2px solid #ff6b35; background: #2a2a2a; color: #ffd700; font-family: 'Courier New', monospace;">
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 8px; font-weight: bold;">Description:</label>
+          <textarea id="customDorkDesc" placeholder="e.g., Search for cached pages" style="width: 100%; padding: 10px; border: 2px solid #ff6b35; background: #2a2a2a; color: #ffd700; font-family: 'Courier New', monospace; height: 80px; resize: none;"></textarea>
+        </div>
+        
+        <div style="display: flex; gap: 10px;">
+          <button onclick="saveCustomDork()" class="btn-search" style="flex: 1;">💾 Save Dork</button>
+          <button onclick="closeSaveDorkModal()" class="clear-btn" style="flex: 1;">❌ Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Templates Section -->
+    <div class="templates">
+      <h2>📋 Popular Dork Templates</h2>
+      <p style="margin-bottom: 20px; opacity: 0.8;">Click any template to quickly use it:</p>
+      <div class="template-grid">
+        <div class="template-card" onclick="useTemplate('site:example.com inurl:admin')">
+          <h3>Admin Panel Finder</h3>
+          <p>Find admin panels on any website</p>
+          <small>site: inurl:</small>
+        </div>
+
+        <div class="template-card" onclick="useTemplate('filetype:pdf site:example.com')">
+          <h3>Document Searcher</h3>
+          <p>Find PDF documents on a site</p>
+          <small>filetype: site:</small>
+        </div>
+
+        <div class="template-card" onclick="useTemplate('intitle:&quot;index of&quot; filetype:mp3')">
+          <h3>File Directory Lister</h3>
+          <p>Find exposed file directories</p>
+          <small>intitle: filetype:</small>
+        </div>
+
+        <div class="template-card" onclick="useTemplate('inurl:login intitle:login')">
+          <h3>Login Page Finder</h3>
+          <p>Discover login pages across the web</p>
+          <small>inurl: intitle:</small>
+        </div>
+
+        <div class="template-card" onclick="useTemplate('&quot;powered by&quot; &quot;version&quot; site:example.com')">
+          <h3>Technology Detector</h3>
+          <p>Identify technologies used on sites</p>
+          <small>Powered by searches</small>
+        </div>
+
+        <div class="template-card" onclick="useTemplate('filetype:conf OR filetype:sql OR filetype:xml')">
+          <h3>Config File Finder</h3>
+          <p>Find configuration and database files</p>
+          <small>Multiple filetype:</small>
+        </div>
+
+        <div class="template-card" onclick="useTemplate('site:example.com &quot;@example.com&quot;')">
+          <h3>Email Harvester</h3>
+          <p>Find email addresses on a domain</p>
+          <small>site: + email pattern</small>
+        </div>
+
+        <div class="template-card" onclick="useTemplate('inurl:php?id= OR inurl:id= site:example.com')">
+          <h3>Potential SQL Injection</h3>
+          <p>Find pages with query parameters</p>
+          <small>inurl: parameter search</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Searches -->
+    <div class="recent-searches" style="display:none;" id="recentSearchesContainer">
+      <h2>📜 Recent Searches</h2>
+      <div id="recentSearchesList"></div>
+    </div>
+
+    <!-- Favorites -->
+    <div class="favorites-list" style="display:none;" id="favoritesContainer">
+      <h2>⭐ Your Favorites</h2>
+      <div id="favoritesList"></div>
+    </div>
+  </div>
+
+  <!-- History Modal -->
+  <div id="historyModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeHistoryModal()">&times;</span>
+      <h2>📜 Search History</h2>
+      <div id="historyList"></div>
+    </div>
+  </div>
+
+  <!-- Favorites Modal -->
+  <div id="favoritesModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeFavoritesModal()">&times;</span>
+      <h2>⭐ Saved Favorites</h2>
+      <div id="favoritesList2"></div>
+    </div>
+  </div>
+
+  <!-- Footer with GitHub Profile -->
+  <footer class="footer">
+    <p>Made with ❤️ by <a href="https://github.com/SNB220" target="_blank" class="github-link">SNB220</a></p>
+    <a href="https://github.com/SNB220" target="_blank" class="github-badge">
+      <span>🔗 View on GitHub</span>
+    </a>
+  </footer>
+
+  <script src="SNB-DorkINT.js"></script>
+</body>
+</html>
