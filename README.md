@@ -1,11 +1,11 @@
-# SNB-DorkINT 🔍
+# SNB-DorkINT
 
 Master the art of advanced Google searching with pre-built queries and templates
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## 🌟 Features
+## Features
 
 - **Multiple Search Engines Support**: Google, Bing, DuckDuckGo, Brave, Yahoo, and Yandex
 - **Pre-built Dork Templates**: Popular search patterns ready to use
@@ -14,7 +14,7 @@ Master the art of advanced Google searching with pre-built queries and templates
 - **Dark Mode**: Retro-styled dark theme with neon aesthetics
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Live Demo
 👉 **[Try SNB-DorkINT Live](https://snb220.github.io/SNB-DorkINT/)** 
@@ -42,7 +42,7 @@ Master the art of advanced Google searching with pre-built queries and templates
 4. **Search** - Click the search button or use templates
 5. **Save Favorites** - Save frequently used queries for quick access
 
-## 🎨 Features Overview
+## Features Overview
 
 ### Template Categories
 - **Admin Panel Finder** - Find admin panels on websites
@@ -60,11 +60,11 @@ Master the art of advanced Google searching with pre-built queries and templates
 - Share dork collections with others
 
 ### Additional Features
-- 🌙 **Dark Mode** - Retro terminal-inspired design
-- ⭐ **Favorites System** - Save your most-used queries
-- 📜 **Search History** - Track your recent searches
-- 📋 **Copy to Clipboard** - Quick copy functionality
-- 🔄 **Quick Refresh** - Clear form with one click
+- **Dark Mode** - Retro terminal-inspired design
+- **Favorites System** - Save your most-used queries
+- **Search History** - Track your recent searches
+- **Copy to Clipboard** - Quick copy functionality
+- **Quick Refresh** - Clear form with one click
 
 ## 🛠️ Technologies Used
 
@@ -80,21 +80,13 @@ This tool is for **educational and research purposes only**. Always:
 - Obtain proper authorization before testing
 - Use responsibly and legally
 
-## 📱 Browser Compatibility
+## Browser Compatibility
 
 - ✅ Chrome/Edge (Recommended)
 - ✅ Firefox
 - ✅ Safari
 - ✅ Brave
 - ✅ Opera
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-- Report bugs
-- Suggest new features
-- Submit pull requests
-- Share custom dork templates
 
 ## 📄 License
 
@@ -104,11 +96,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **SNB220**
 - GitHub: [@SNB220](https://github.com/SNB220)
-
-## 🙏 Acknowledgments
-
-- Inspired by the security research community
-- Thanks to all contributors and users
 
 ---
 
